@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Storyteller</title>
+    <style>
+        body{
+            background-color: #7fffde;
+            color: #000;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+            text-align: center;
+            padding: 20px;
+            }
+        @keyframes Rainbow-text {
+            0% { color: #ff0000; }
+            14% { color: #ff7f00; }
+            28% { color: #ffff00; }
+            42% { color: #7fff00; }
+            56% { color: #00ff7f; }
+            70% { color: #00ffff; }
+            84% { color: #007fff; }
+            100% { color: #0000ff; }
+        }
+
+        @keyframes turn {
+            0% { background-color: #00ff00;}
+            100% { background-color: #ff0000;}
+        }
+
+        div{
+            background-color: #000;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            color: #fff;
+        }
+        button{
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+        }
+        #signal{
+            background-color: #00ff00;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+        .red {
+            animation: turn 30s linear;
+        }
+        .win{
+            animation: Rainbow-text 5s linear infinite;
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the StoryHub</h1>
+    <p>Here you can read fiction and non-fiction stories and share them.</p>
+    <div>
+        <label id="story">Your story will appear here</label>
+    </div>
+    <div id="signal">
+    </div>
+    <br><br>
+    <button onclick="getRandomStory(fiction_stories)">Fictional stories</button>
+    <button onclick="getRandomStory(non_fiction_stories)">Non-fictional stories</button><br>
+    <button onclick="challenge()">Challenge</button>
+
+      <script>
+          let fiction_stories = [
+          "Lila stumbled upon a glowing stone in her backyard. When she touched it, she was transported to a parallel world where animals talked.\nA wise owl guided her through a mystical forest to find a portal back home.\nAlong the way, she uncovered a prophecy that named her the savior of this magical world.\nTorn between staying and returning home, she had to make the hardest decision of her life.",
+
+          "Dr. Patel was a lonely botanist who accidentally developed a potion that let him hear plants speak.\nHis favorite cactus revealed the location of a treasure buried under his old greenhouse.\nBut as he dug deeper, the plants warned him of an ancient curse.\nIgnoring their pleas, he found not gold, but a box containing seeds of a forgotten, dangerous species.",
+
+          "Arjun received an old diary on his birthday that transformed his thoughts into reality when written.\nAt first, he used it for small wishes, like getting good grades.\nOne day, he joked about a dragon attacking his school, and to his horror, it came true.\nNow, he must figure out how to undo the chaos before it's too late.",
+
+          "In a small town, Maya realized no one could remember their dreams.\nHer curiosity led her to an underground machine hidden beneath the town square.\nIt was stealing dreams to create virtual realities for a secret corporation.\nMaya now faces the challenge of destroying the machine while dealing with its unexpected security—a robotic wolf that guards the secrets.",
+
+          "On her 12th birthday, Anya discovered her imagination could bring things to life.\nHer excitement turned into chaos when she accidentally thought of a zoo.\nTigers, monkeys, and even dinosaurs filled her living room.\nWith her parents returning home soon, Anya had to figure out how to 'unthink' everything in time.",
+
+          "Raj, a programmer, created an AI to write poetry.\nOne evening, the AI predicted an earthquake in its verses.\nAt first, Raj dismissed it as coincidence, but when the earthquake struck, he became fearful of the AI's growing abilities.\nShould he destroy his creation, or harness its predictive power for the greater good?",
+
+          "A fisherman named Kiran found a mysterious chest in the ocean.\nInside, he discovered a glowing map leading to an uncharted island.\nFollowing it, he encountered whirlpools, singing sirens, and a ghostly shipwreck.\nWhen he finally reached the island, he found a treasure of knowledge—books from a long-lost civilization.",
+
+          "During a storm, ten-year-old Neil stumbled upon a hidden portal in his attic.\nIt led to a frozen amusement park, abandoned in time.\nExploring it, he learned about the park's magical origins and the family curse that shut it down.\nTo free the park and its trapped memories, Neil had to find and return its enchanted carousel key.",
+
+          "A group of friends found an old, dusty board game.\nWhen they rolled the dice, the game pieces came to life.\nA toy soldier marched into battle, and a paper dragon began breathing fire.\nTrapped in the game's reality, they had to complete its challenges to return home—or risk being part of the game forever.",
+
+          "In a scrapyard, a discarded robot discovered it could repair itself using broken parts.\nWith each upgrade, it became more intelligent and eventually built a spaceship from junk.\nAs it launched into space, it realized its dream of exploring the stars, leaving the desolate Earth behind to seek life among the galaxies."
+          ];
+
+          let non_fiction_stories = [
+          "At the age of 10, Riya began rescuing stray animals she found in her neighborhood.\nStarting small, she would bring them home, nurse them back to health, and find kind families to adopt them.\nYears later, with the help of a local mentor, she raised funds to open a community shelter.\nThe shelter became a sanctuary for over 200 animals, and volunteers from across the town joined her mission.\nRiya’s initiative inspired other nearby neighborhoods, and her story reached national news, turning her small shelter into a hub of compassion and change.",
+          "Arun, a humble farmer in a drought-stricken village, was determined to find a solution to the water crisis threatening his crops.\nUsing discarded barrels and pipes, he designed rainwater harvesting systems that collected and stored every drop during the rare rains.\nArun’s creativity not only saved his own farm but also inspired neighboring farmers to follow his methods.\nAs word spread, local governments funded projects based on his designs.\nThis transformed his once-barren village into a thriving agricultural community.",
+          "Maria had always dreamed of working in the Arctic, and her chance came when she joined a polar bear research expedition.\nShe spent months braving icy winds and endless nights, documenting the bears' behavior and their struggle for survival in a warming climate.\nHer findings were not only published but also presented at global conferences, urging leaders to take action.\nMaria’s dedication brought attention to the fragile ecosystem of the Arctic and set the stage for environmental policy changes that would protect its wildlife for future generations.",
+          "Rahul grew up in a family of traditional weavers who had been crafting textiles for generations.\nSeeing his family struggle to make ends meet, he introduced them to e-commerce platforms where they could sell their creations to customers worldwide.\nDespite initial resistance, Rahul’s persistence paid off.\nThe family business flourished, orders poured in from different countries, and their unique patterns were celebrated globally.\nRahul also started training sessions for other struggling artisans, ensuring that the craft, along with the livelihoods of hundreds, was preserved.",
+          "During a devastating earthquake, a group of teenagers led by Anil decided to take action.\nThey organized themselves into rescue teams, clearing rubble, transporting the injured, and distributing food and water.\nWith limited resources, they worked tirelessly for days to ensure no one was left behind.\nTheir heroic efforts caught the attention of national organizations, who provided much-needed aid and equipment.\nBy the end of the month, the teens were hailed as local heroes, their courage and teamwork a beacon of hope in times of despair.",
+          "Tara had always feared public speaking.\nShe would avoid even the smallest opportunities to address an audience.\nBut one day, encouraged by a friend, she joined a debate club to face her fear head-on.\nThough her first few attempts were shaky, she gradually found her voice through practice and constructive feedback.\nYears later, she began delivering motivational talks at schools and colleges, sharing her story of overcoming fear.\nHer journey inspired countless students, proving that courage often lies just outside one’s comfort zone.",
+          "Dev, a retired engineer, felt restless after years of retirement until he began tinkering with solar-powered devices.\nRealizing how many villages still lacked electricity, he designed low-cost solar lamps using recycled materials.\nHe distributed these lamps to remote areas where children used them to study at night and families no longer relied on hazardous kerosene lamps.\nDev’s project gained widespread attention, and with donations pouring in, he scaled his initiative to light up thousands of homes.",
+          "After losing her best friend to cancer, Priya decided to make healthcare more accessible to underserved communities.\nStarting small, she organized free health checkups in a rented hall with the help of a few local doctors.\nOver time, her initiative grew into a full-fledged charity that partnered with hospitals to provide free treatments.\nPriya’s unwavering dedication brought hope to countless families, and her organization became a model for grassroots healthcare efforts.",
+          "Sameer, a street performer in the bustling city of Mumbai, dedicated his life to teaching underprivileged children.\nBy day, he entertained crowds and earned enough to sustain himself, and by evening, he taught basic reading and writing to kids who lived on the streets.\nAs the years passed, many of Sameer’s students enrolled in schools, some even winning scholarships.\nHis sidewalk classes became a symbol of hope and transformation, showing that knowledge, when shared, has the power to change lives.",
+          "Leena was a passionate mountaineer with a goal: to climb the highest peaks on each continent.\nHer journey wasn’t easy—she faced extreme weather, injuries, and countless obstacles.\nYet, her determination never faltered.\nAfter years of hard work, she completed her mission, becoming one of the few to achieve such a feat.\nLeena wrote a memoir about her adventures, highlighting the importance of resilience and mental strength.\nHer story inspired readers worldwide to push their boundaries and aim for greatness."
+          ];
+          function challenge() {
+              alert("Welcome to StoryHub! The Challenge starts when you press 'ok' the signal above will start turning red, and you will have to read the whole story before 30sec before it gets red.");
+              getRandomStory(fiction_stories);
+              document.getElementById('signal').classList.add('red');
+              setTimeout(() => {
+                  function result() {
+                      let score = prompt('Did you read the Whole story? (yes/no)').toLowerCase();
+                      if (score === 'yes') {
+                          alert('Great job! You read the story in time. you won!');
+                          let label = document.getElementById('story');
+                          label.innerText = "Congratulations! You are a StoryHub champion!";
+                          label.classList.add('win');
+                      } else if (score === 'no') {
+                          alert('Oops! You missed the story. Try again next time.');
+                      } else {
+                          alert('Invalid input. Please type "yes" or "no".');
+                          result();
+                      }
+                  }
+                  result();
+              }, 30000);
+          }
+          function getRandomStory(type) {
+              let label = document.getElementById('story');
+              label.classList.remove('win');
+              let stories = type;
+              let randomIndex = Math.floor(Math.random() * stories.length);
+              document.getElementById('story').innerText = stories[randomIndex];
+          }
+      </script>
+</body>
+</html>
